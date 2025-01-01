@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 const CourseCard = ({item}) => {
   const navigation = useNavigation();
@@ -9,7 +10,13 @@ const CourseCard = ({item}) => {
   };
   return (
     <View style={styles.card}>
-      <Image source={{uri: item.thumbnail}} style={styles.thumbnail} />
+      <FastImage
+        style={styles.thumbnail}
+        source={{
+          uri: item.thumbnail,
+        }}
+        resizeMode={FastImage.resizeMode.cover}
+      />
       <Text style={styles.courseName}>{item.courseName}</Text>
       <Text style={styles.description}>{item.description}</Text>
       <TouchableOpacity

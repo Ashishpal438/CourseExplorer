@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Alert,
-  Image,
   SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {useDispatch, useSelector} from 'react-redux';
 import {enrollCourse} from '../redux/slices/enrolledCoursesSlice';
 
@@ -27,7 +27,13 @@ const CourseDetailsScreen = ({route}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
-        <Image source={{uri: course.thumbnail}} style={styles.thumbnail} />
+        <FastImage
+          style={styles.thumbnail}
+          source={{
+            uri: course.thumbnail,
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
         <Text style={styles.title}>{course.name}</Text>
         <Text style={styles.description}>{course.description}</Text>
         <Text style={styles.instructor}>Instructor: {course.instructor}</Text>
