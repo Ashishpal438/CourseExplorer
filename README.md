@@ -62,4 +62,8 @@ Redux Toolkit
 
 ## Aproach
 
-There were 5 main features, so i started with the navigation part first, i added bottom tabs and stack navigators with 3 screens (All Courses, Course Details, Enrolled Courses). Then i created a dummy data for each course and used flatlist to display the data in the Home Tab. After that i developed the Course details screen. Then i added redux toolkit to store the enrolled courses throughout the application and display then in the enrolled tab. I found that the image were loading slowly, so i added react-native-fast-image for enhanced image loading.
+I began by implementing the navigation system, starting with bottom tabs and stack navigators to manage three screens: All Courses, Course Details, and Enrolled Courses. Next, I created dummy data for each course and utilized a FlatList to display the data in the Home Tab.
+
+Following this, I developed the Course Details screen. To manage state across the application, I integrated Redux Toolkit to store enrolled courses and display them in the Enrolled Tab.
+
+Lastly, to address slow image loading, I integrated the react-native-fast-image library for improved performance.
