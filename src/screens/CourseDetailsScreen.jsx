@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Alert,
+  Image,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -26,10 +27,11 @@ const CourseDetailsScreen = ({route}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
+        <Image source={{uri: course.thumbnail}} style={styles.thumbnail} />
         <Text style={styles.title}>{course.name}</Text>
+        <Text style={styles.description}>{course.description}</Text>
         <Text style={styles.instructor}>Instructor: {course.instructor}</Text>
         <Text style={styles.duration}>Duration: {course.duration}</Text>
-        <Text style={styles.description}>{course.description}</Text>
         {!enrolled ? (
           <TouchableOpacity onPress={handleEnrollment} style={styles.button}>
             <Text style={[styles.enrolledText, {marginTop: 0}]}>
@@ -37,7 +39,7 @@ const CourseDetailsScreen = ({route}) => {
             </Text>
           </TouchableOpacity>
         ) : (
-          <Text style={styles.enrolledText}>
+          <Text style={styles.alreadyEnrolledText}>
             You are enrolled in this course!
           </Text>
         )}
@@ -59,6 +61,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
   },
+  thumbnail: {
+    width: '100%',
+    height: 250,
+    borderRadius: 8,
+  },
   instructor: {
     fontSize: 16,
     marginBottom: 4,
@@ -77,6 +84,12 @@ const styles = StyleSheet.create({
     marginTop: 16,
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'white',
+  },
+  alreadyEnrolledText: {
+    marginTop: 16,
+    fontSize: 16,
+    fontWeight: 'bold',
     color: 'green',
   },
   button: {
@@ -84,5 +97,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 20,
+    backgroundColor: 'green',
+    borderColor: 'green',
   },
 });
