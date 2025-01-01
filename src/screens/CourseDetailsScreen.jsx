@@ -1,19 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Alert,
-  Button,
   SafeAreaView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {enrollCourse} from '../redux/slices/enrolledCoursesSlice';
 
 const CourseDetailsScreen = ({route}) => {
+  const dispatch = useDispatch();
   const {course} = route.params;
-  const [enrolled, setEnrolled] = useState(false);
 
+  const enrolledCourses = useSelector(
+    state => state.enrolledCourses.enrolledCourses,
+  );
+  const enrolled = enrolledCourses.includes(course);
   const handleEnrollment = () => {
-    setEnrolled(true);
+    dispatch(enrollCourse(course));
     Alert.alert('Success', 'You have been enrolled in the course!');
   };
 
@@ -25,7 +31,11 @@ const CourseDetailsScreen = ({route}) => {
         <Text style={styles.duration}>Duration: {course.duration}</Text>
         <Text style={styles.description}>{course.description}</Text>
         {!enrolled ? (
-          <Button title="Mark as Enrolled" onPress={handleEnrollment} />
+          <TouchableOpacity onPress={handleEnrollment} style={styles.button}>
+            <Text style={[styles.enrolledText, {marginTop: 0}]}>
+              Mark as Enrolled
+            </Text>
+          </TouchableOpacity>
         ) : (
           <Text style={styles.enrolledText}>
             You are enrolled in this course!
@@ -68,5 +78,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'green',
+  },
+  button: {
+    paddingVertical: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    alignItems: 'center',
   },
 });
